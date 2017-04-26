@@ -1,17 +1,13 @@
 #include <stdio.h>
 #include <math.h>
-#include <time.h>
 
 int getLegendreCoeff(double* a, int n);
 int getZeroes(double* zero, double* a, int n);
-double evalNewton(double x, double* a, int n);
-double evalDeriv(double x, double* a, int n);
-double evalLegendre(double x, double* a, int n);
 int errorCheck(double* a, int n);
 
 int getZeroes(double* zero, double* a, int n)
 {
-	int i, count;
+	int i,j, count;
 	if (errorCheck(a, n)) return 0;
 
 	//printf("before LegCoeff\n");
@@ -23,6 +19,7 @@ int getZeroes(double* zero, double* a, int n)
 	//printf("after legCoeff\n");
 	//for (i = 0; i < n+1; i++)	printf("%.15f\n", a[i]);
 	//printf("end legCoeff\n");
+
 
 	for (i = 1; i < n+1; i++)
 	{
@@ -36,14 +33,138 @@ int getZeroes(double* zero, double* a, int n)
 		double approx = zero[i];
 		//printf("%.15f\n", zero[i]);
 		double check;
+		double deriv;
 		double error;
+
+
+
+
 
 		do
 		{
-			//printf("%.15f\n", approx);
-			check = evalNewton(approx, a, n);
-			//printf("%.15f\n", check);
+			double acc1  = 0;		double acc11 = 0;
+			double acc2  = 0;		double acc12 = 0;
+			double acc3  = 0;		double acc13 = 0;
+			double acc4  = 0;		double acc14 = 0;
+			double acc5  = 0;		double acc15 = 0;
+			double acc6  = 0;		double acc16 = 0;
+			double acc7  = 0;		double acc17 = 0;
+			double acc8  = 0;		double acc18 = 0;
+			double acc9  = 0;		double acc19 = 0;
+			double acc10 = 0;		double acc20 = 0;
+
+			double in1  = 0;		double in11 = 0;
+			double in2  = 0;		double in12 = 0;
+			double in3  = 0;		double in13 = 0;
+			double in4  = 0;		double in14 = 0;
+			double in5  = 0;		double in15 = 0;
+			double in6  = 0;		double in16 = 0;
+			double in7  = 0;		double in17 = 0;
+			double in8  = 0;		double in18 = 0;
+			double in9  = 0;		double in19 = 0;
+			double in10 = 0;		double in20 = 0;
+
+			double sumNewton = a[0], 	sumDeriv = 0;
+			double xpwrNewton = n, 		xpwrDeriv = 1;
+
+			for (j = 1; j < n-9; j+=10)
+			{
+				in1 += xpwrDeriv *
+					a[j] *(double)(j);
+				in2 += xpwrDeriv *approx *
+					a[j] * (double)(j+1);
+
+				in3 += xpwrDeriv *approx *approx *
+					a[j] * (double)(j+2);
+
+				in4 += xpwrDeriv *approx *approx *approx *
+					a[j] * (double)(j+3);
+
+				in5 += xpwrDeriv *approx *approx *approx *approx *
+					a[j] * (double)(j+4);
+
+				in6 += xpwrDeriv *approx *approx *approx *approx *approx *
+					a[j] * (double)(j+5);
+
+				in7 += xpwrDeriv *approx *approx *approx *approx *approx *approx *
+					a[j] * (double)(j+6);
+
+				in8 += xpwrDeriv *approx *approx *approx *approx *approx *approx *approx *
+					a[j] * (double)(j+7);
+
+				in9 += xpwrDeriv *approx *approx *approx *approx *approx *approx *approx *approx *
+					a[j] * (double)(j+8);
+
+				in10 += xpwrDeriv *approx *approx *approx *approx *approx *approx *approx *approx *approx *
+					a[j] * (double)(j+9);
+
+				xpwrDeriv *= approx *approx *approx *approx *approx *approx *approx *approx *approx * approx;
+
+				acc1 += in1;
+				acc2 += in2;
+				acc3 += in3;
+				acc4 += in4;
+				acc5 += in5;
+				acc6 += in6;
+				acc7 += in7;
+				acc8 += in8;
+				acc9 += in9;
+				acc10 += in10;
+
+				in11 += xpwrNewton * a[j];
+
+				in12 += xpwrNewton*approx * a[j];
+
+				in13 += xpwrNewton*approx *approx * a[j];
+
+				in14 += xpwrNewton*approx *approx *approx * a[j];
+
+				in15 += xpwrNewton*approx *approx *approx *approx * a[j];
+
+				in16 += xpwrNewton*approx *approx *approx *approx *approx * a[j];
+
+				in17 += xpwrNewton*approx *approx *approx *approx *approx *approx * a[j];
+
+				in18 += xpwrNewton*approx *approx *approx *approx *approx *approx *approx * a[j];
+
+				in19 += xpwrNewton*approx *approx *approx *approx *approx *approx *approx *approx * a[j];
+
+				in20 += xpwrNewton*approx *approx *approx *approx *approx *approx *approx *approx *approx * a[j];
+
+				xpwrNewton *=approx *approx *approx *approx *approx *approx *approx *approx *approx * approx;
+
+				acc11 += in11;
+				acc12 += in12;
+				acc13 += in13;
+				acc14 += in14;
+				acc15 += in15;
+				acc16 += in16;
+				acc17 += in17;
+				acc18 += in18;
+				acc19 += in19;
+				acc20 += in20;
+				
+			}
+
+			//finish up
+			for (; j < n+1; j++)
+			{
+				sumDeriv += a[j] * xpwrDeriv * (double)j;
+				xpwrDeriv *= approx;
+
+				sumNewton += a[j] * xpwrNewton;
+				xpwrNewton *= approx;
+			}
+
+			//sum in dest
+			check = sumNewton + acc1 + acc2 + acc3 + acc4 + acc5 + acc6 + acc7 + acc8 + acc9 + acc10;
+			deriv = sumDeriv + acc11 + acc12 + acc13 + acc14 + acc15 + acc16 + acc17 + acc18 + acc19 +acc20;
+
+			if (deriv == 0.0) check = n-1e-16;
+			else check = approx + (double)(-1.0) * check/deriv;
+
 			error = fabs(check - approx);
+
 			//printf("%.15f\n", error);
 			approx = check;
 			//printf("%.15f\n", check);
@@ -62,53 +183,6 @@ int getZeroes(double* zero, double* a, int n)
 	return 1;
 }
 
-
-double evalNewton(double x, double* a, int n)
-{
-	double f = evalLegendre(x, a, n);
-	double f_prime = evalDeriv(x, a, n);
-
-	//printf("%.15f\n", f);
-	//printf("%.15f\n", f_prime);
-	//printf("%.15f\n",(f/f_prime));
-	if (f_prime == 0.0) return x;
-	return x + (double)(-1.0) * f/f_prime;
-}
-
-double evalLegendre(double x, double* a, int n)
-{
-	int i;
-	double sum = 0;
-	double xpwr = 1;
-
-	for (i = 0; i < n+1; i++)
-	{
-		//printf("%.15f\n", sum);
-		//printf("%.15f\n", a[i]);
-		sum += xpwr * a[i];
-		xpwr *= x;
-	}
-
-	//printf("%.15f\n", sum);
-	return sum;
-}
-
-double evalDeriv(double x, double* a, int n)
-{
-	int i;
-	double sum = 0;
-	double xpwr = 1;
-
-	for (i = 1; i < n+1; i++)
-	{
-		//printf("%.15f\n", a[i]);
-		sum += xpwr * a[i] * (double)(i);
-		xpwr *= x;
-	}
-
-	//printf("%.15f\n", sum);
-	return sum;
-}
 
 
 
