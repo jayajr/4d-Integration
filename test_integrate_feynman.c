@@ -87,7 +87,8 @@ double integrateGaussian4d(int n, int m)
 				fxyzt[i][j] = new double*[n];
 				for (k = 0; k < n; k++)
 				{
-					fxyzt[i][j][k] = new double				}
+					fxyzt[i][j][k] = new double[n];
+				}
 			}
 		}
 
@@ -100,9 +101,9 @@ double integrateGaussian4d(int n, int m)
 				w[i][j] = new double*[n];
 				for (k = 0; k < n; k++)
 				{
-					w[i][j][k] = new double[n];a21
+					w[i][j][k] = new double[n];
 				}
-			}1
+			}
 		}
 
 	gQ_SoE = new double*[n+1];
