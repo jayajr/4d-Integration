@@ -4,14 +4,21 @@
 #define CPG 3.09
 #define GIG 1000000000
 #define PI 3.1415926535897932384626
+#define M2 0.0001
 
 #include "gaussianElimination.c"
-#include "legendreZeros.c"
+#include "legendreBackup.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <omp.h>
 #include <time.h>
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
+#include <thrust/for_each.h>
+#include <thrust/iterator/counting_iterator.h>
+#include <thrust/execution_policy.h>
+
 
 double integrateGaussian4d(int n, double m);
 void f1(double**** fxyzt, double* lZ, int n, double m);
@@ -23,6 +30,44 @@ void init_gQ_Soln(double* gQ_Soln, int n);
 void cleanUp(double* lZ, double** gQ_SoE, double* gQ_Soln, double* sinVals, int n);
 void sinCalc(double *sinVals, double *vals, int size);
 
+struct permuteFunctor
+{
+	const double* sinVals_f;
+	const double* gQ_Soln_f;
+	double* sumVec_f;
+	int n;
+
+	permuteFunctor(thrust::device_vector<double> const& sinV,
+				   thrust::device_vector<double> const& gQV,
+				   thrust::device_vector<double> & sumV)
+	{
+		sinVals_f = thrust::raw_pointer_cast(sinV.data());
+		gQ_Soln_f = thrust::raw_pointer_cast(gQV.data());
+		sumVec_f = thrust::raw_pointer_cast(sumV.data());
+		n = sinV.size();
+	}
+
+
+
+	__device__
+	void operator()(int x)
+	{
+		int nn = (n*n);
+		int nnn = (n*n*n);
+
+		int l = (x % (n));
+		int k = (x % (nn)  / (n));
+		int j = (x % (nnn) / (nn));
+		int i = (x         / (nnn));
+
+		double sumSin = sinVals_f[i] + sinVals_f[j] + sinVals_f[k] + sinVals_f[l] + M2;
+		double prodGQ = gQ_Soln_f[i] * gQ_Soln_f[j] * gQ_Soln_f[k] * gQ_Soln_f[l];
+
+		sumVec_f[(i*(nnn)) + (j*(nn)) + (k*(n)) + l] = (1.0/(sumSin*sumSin)*prodGQ);
+
+	}
+};
+
 int main(int argc, char** argv)
 {
 
@@ -31,8 +76,8 @@ int main(int argc, char** argv)
 
 	if (argc > 1) n = atoi(argv[1]);
 
-	struct timespec time1, time2, elapsed_integrate;
-	struct timespec diff(struct timespec start, struct timespec end);
+	//struct timespec time1, time2, elapsed_integrate;
+	//struct timespec diff(struct timespec start, struct timespec end);
 
 	printf("\nResult: %.15f\n", integrateGaussian4d(n,m));
 
@@ -71,7 +116,7 @@ double integrateGaussian4d(int n, double m)
 	double* sinVals;
 
 	//printf("Done Declaring\n");
-	int i, j, k, l;
+	int i;
 
 #if TIME_CODE
 	struct timespec time1, time2, elapsed;
@@ -148,25 +193,32 @@ double integrateGaussian4d(int n, double m)
 /*********************************
 
 
-			COMPUTATION
+				GPU
 
 
 *********************************/
 
-	double m2 = m*m;
-	for (i = 0; i < n; i++)
+
+	thrust::device_vector<double> d_sinVals(n);
+	thrust::device_vector<double> d_gQ_Soln(n);
+	thrust::device_vector<double> d_sumVals(n*n*n*n, 0);
+
+	for (int i = 0; i < n; i ++)
 	{
-		for (j = 0; j < n; j++)
-		{
-			for(k = 0; k < n; k++)			
-			{
-				for (l = 0; l < n; l++)
-				{
-					sum += 1.0/pow((sinVals[i] + sinVals[j] + sinVals[k] + sinVals[l] + m2),2.0) * gQ_Soln[i] * gQ_Soln[j] * gQ_Soln[k] * gQ_Soln[l];
-				}
-			}
-		}
+		d_sinVals[i] = sinVals[i];
+		d_gQ_Soln[i] = gQ_Soln[i];
 	}
+
+	thrust::for_each_n(
+		thrust::device,
+		thrust::counting_iterator<int>(0),
+		(n*n*n*n),
+		permuteFunctor(d_sinVals, d_gQ_Soln, d_sumVals));
+
+
+	sum = thrust::reduce(d_sumVals.begin(), d_sumVals.end(), (int) 0, thrust::plus<int>());
+
+
 #if TIME_CODE
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
 	elapsed = diff(time1, time2);
@@ -388,7 +440,7 @@ void cleanUp(double* lZ,
 			 double* sinVals,
 			 int n)
 {
-	int i, j, k;
+	int i;
 	delete[] lZ;
 	/*
 	for (i = 0; i < n; i++)
