@@ -1,0 +1,100 @@
+
+--- Allocation time: 0.383747 (msec)
+----- Legendre Init time: 5.909962 (msec)
+----- Weight Init time: 0.051022 (msec)
+--- Initialization time: 5.985302 (msec)
+--- DotProduct time: 1383.996202 (msec)
+Clean up time: 0.006789 (msec)
+=== Total time: 1390.372040 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.360807 (msec)
+----- Legendre Init time: 5.923082 (msec)
+----- Weight Init time: 0.052138 (msec)
+--- Initialization time: 6.001843 (msec)
+--- DotProduct time: 1359.376065 (msec)
+Clean up time: 0.006798 (msec)
+=== Total time: 1365.745513 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.352164 (msec)
+----- Legendre Init time: 5.929478 (msec)
+----- Weight Init time: 0.051609 (msec)
+--- Initialization time: 6.007745 (msec)
+--- DotProduct time: 1397.396321 (msec)
+Clean up time: 0.006427 (msec)
+=== Total time: 1403.762657 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.389213 (msec)
+----- Legendre Init time: 5.923113 (msec)
+----- Weight Init time: 0.053636 (msec)
+--- Initialization time: 6.000916 (msec)
+--- DotProduct time: 1375.469304 (msec)
+Clean up time: 0.007221 (msec)
+=== Total time: 1381.866654 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.351157 (msec)
+----- Legendre Init time: 5.934852 (msec)
+----- Weight Init time: 0.051158 (msec)
+--- Initialization time: 6.012918 (msec)
+--- DotProduct time: 1386.442917 (msec)
+Clean up time: 0.005945 (msec)
+=== Total time: 1392.812936 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.351512 (msec)
+----- Legendre Init time: 5.912950 (msec)
+----- Weight Init time: 0.051686 (msec)
+--- Initialization time: 5.990379 (msec)
+--- DotProduct time: 1379.496698 (msec)
+Clean up time: 0.006137 (msec)
+=== Total time: 1385.844727 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.349083 (msec)
+----- Legendre Init time: 5.936678 (msec)
+----- Weight Init time: 0.050092 (msec)
+--- Initialization time: 6.012652 (msec)
+--- DotProduct time: 1391.827656 (msec)
+Clean up time: 0.006100 (msec)
+=== Total time: 1398.195491 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.355480 (msec)
+----- Legendre Init time: 5.909511 (msec)
+----- Weight Init time: 0.050806 (msec)
+--- Initialization time: 5.987221 (msec)
+--- DotProduct time: 1403.446204 (msec)
+Clean up time: 0.008235 (msec)
+=== Total time: 1409.797140 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.356098 (msec)
+----- Legendre Init time: 5.932961 (msec)
+----- Weight Init time: 0.052416 (msec)
+--- Initialization time: 6.010980 (msec)
+--- DotProduct time: 1437.477208 (msec)
+Clean up time: 0.006486 (msec)
+=== Total time: 1443.850772 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+
+
+--- Allocation time: 0.085389 (msec)
+----- Legendre Init time: 1.351427 (msec)
+----- Weight Init time: 0.012944 (msec)
+--- Initialization time: 1.369979 (msec)
+--- DotProduct time: 1350.405309 (msec)
+Clean up time: 0.006372 (msec)
+=== Total time: 1351.867049 (msec)
+Result: 37148915615162283613732751468399815826106309951989040142425130390376747139971355660375704590884571115945984.000000000000000
+

@@ -1,0 +1,100 @@
+
+--- Allocation time: 0.007229 (msec)
+----- Legendre Init time: 2.016134 (msec)
+----- Weight Init time: 0.014486 (msec)
+--- Initialization time: 2.034930 (msec)
+--- DotProduct time: 393.265830 (msec)
+Clean up time: 0.009790 (msec)
+=== Total time: 395.317779 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007733 (msec)
+----- Legendre Init time: 2.024162 (msec)
+----- Weight Init time: 0.013706 (msec)
+--- Initialization time: 2.042243 (msec)
+--- DotProduct time: 384.009906 (msec)
+Clean up time: 0.009366 (msec)
+=== Total time: 386.069248 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007693 (msec)
+----- Legendre Init time: 2.024488 (msec)
+----- Weight Init time: 0.014179 (msec)
+--- Initialization time: 2.043038 (msec)
+--- DotProduct time: 392.343376 (msec)
+Clean up time: 0.009114 (msec)
+=== Total time: 394.403221 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007563 (msec)
+----- Legendre Init time: 2.020954 (msec)
+----- Weight Init time: 0.014211 (msec)
+--- Initialization time: 2.039653 (msec)
+--- DotProduct time: 391.513174 (msec)
+Clean up time: 0.009325 (msec)
+=== Total time: 393.569715 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007219 (msec)
+----- Legendre Init time: 2.028589 (msec)
+----- Weight Init time: 0.014962 (msec)
+--- Initialization time: 2.048890 (msec)
+--- DotProduct time: 386.055093 (msec)
+Clean up time: 0.008786 (msec)
+=== Total time: 388.119987 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007314 (msec)
+----- Legendre Init time: 2.026661 (msec)
+----- Weight Init time: 0.014262 (msec)
+--- Initialization time: 2.045346 (msec)
+--- DotProduct time: 396.771304 (msec)
+Clean up time: 0.008802 (msec)
+=== Total time: 398.832765 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007656 (msec)
+----- Legendre Init time: 2.021042 (msec)
+----- Weight Init time: 0.014344 (msec)
+--- Initialization time: 2.039739 (msec)
+--- DotProduct time: 388.367597 (msec)
+Clean up time: 0.009299 (msec)
+=== Total time: 390.424291 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007258 (msec)
+----- Legendre Init time: 2.022302 (msec)
+----- Weight Init time: 0.013973 (msec)
+--- Initialization time: 2.040621 (msec)
+--- DotProduct time: 391.508141 (msec)
+Clean up time: 0.009414 (msec)
+=== Total time: 393.565434 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007360 (msec)
+----- Legendre Init time: 2.023157 (msec)
+----- Weight Init time: 0.013773 (msec)
+--- Initialization time: 2.041197 (msec)
+--- DotProduct time: 397.764026 (msec)
+Clean up time: 0.009074 (msec)
+=== Total time: 399.821656 (msec)
+Result: 1137230503.000000000000000
+
+
+--- Allocation time: 0.007803 (msec)
+----- Legendre Init time: 2.026275 (msec)
+----- Weight Init time: 0.014138 (msec)
+--- Initialization time: 2.044981 (msec)
+--- DotProduct time: 388.806798 (msec)
+Clean up time: 0.008997 (msec)
+=== Total time: 390.868579 (msec)
+Result: 1137230503.000000000000000
+
